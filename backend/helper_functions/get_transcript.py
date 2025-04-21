@@ -5,12 +5,12 @@ import os
 load_dotenv()
 
 
-def getTranscript():
+def getTranscript() -> str:
     aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
 
     transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(
-        "./sermons/Mon 4.21.25 Numbers 14： 1-10 The Limits of Leadership.mp3"
+        "./sermons/Mon 4.21.25 Numbers 14： 1-10 The Limits of Leadership.webm"
     )
 
-    print(transcript.text)
+    return transcript.text

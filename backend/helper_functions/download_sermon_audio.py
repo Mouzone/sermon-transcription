@@ -12,12 +12,6 @@ def downloadSermonAudio(sermon_link: str) -> bool:
         "verbose": True,
         "format": "bestaudio/best",
         "outtmpl": "sermons/%(title)s.%(ext)s",
-        "postprocessors": [
-            {
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
-            }
-        ],
     }
 
     with yt_dlp.YoutubeDL(yt_opts) as ydl:
