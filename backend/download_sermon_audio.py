@@ -1,11 +1,12 @@
 from pytubefix import YouTube
+from pytubefix.cli import on_progress
 import os
 
 
 def downloadSermonAudio(sermon_link: str) -> bool:
     try:
-        yt = YouTube(sermon_link)
-        audio_stream = yt.streams.filter(only_audio=True).first()
+        yt = YouTube(sermon_link, on_progress_callback=on_progress)
+        audio_stream = yt.streams.get_audio_only()
 
         if not audio_stream:
             print("No audio stream found for this video.")
