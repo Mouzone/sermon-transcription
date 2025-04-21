@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import logging
 
 
-def scrapeSermonData() -> Optional[Dict[str, str]]:
+def scrapeRecentSermon() -> Optional[Dict[str, str]]:
     """
     1. Scrapes ArumdaunEM's livestreams page
     2. Finds the most most recent COMPLETED livestream

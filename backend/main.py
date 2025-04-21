@@ -1,10 +1,9 @@
-from scrape_sermon_link import scrapeSermonData
-from download_sermon_audio import downloadSermonAudio
+from helper_functions.scrape_recent_sermon import scrapeRecentSermon
+from helper_functions.download_sermon_audio import downloadSermonAudio
 
 
 def main():
-    sermon_data = scrapeSermonData()
-    print(sermon_data)
+    sermon_data = scrapeRecentSermon()
     downloadSermonAudio(sermon_data["link"])
 
 
