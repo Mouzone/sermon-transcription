@@ -1,3 +1,5 @@
+import Section from "./components/Section";
+import { sections } from "./utility.ts/consts";
 import supabase from "./utility.ts/supabase";
 
 export default async function Page() {
@@ -17,11 +19,9 @@ export default async function Page() {
     return (
         <div>
             <div>{data["title"]}</div>
-            <div>{data["anecdote"]}</div>
-            <div>{data["opening prayer"]}</div>
-            <div>{data["sermon"]}</div>
-            <div>{data["closing prayer"]}</div>
-            <div>{data["conclusion"]}</div>
+            {sections.map((section) => (
+                <Section key={section} title={section} value={data[section]} />
+            ))}
         </div>
     );
 }
