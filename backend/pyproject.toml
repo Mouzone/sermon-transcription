@@ -5,7 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "assemblyai>=0.38.0",
     "bs4>=0.0.2",
+    "dotenv>=0.9.9",
     "logging>=0.4.9.6",
     "lxml-html-clean>=0.4.2",
     "requests-html>=0.10.0",
