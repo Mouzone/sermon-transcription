@@ -2,6 +2,12 @@ import yt_dlp
 
 
 def downloadSermonAudio(sermon_link: str) -> bool:
+    """
+    1. Takes link to youtube video
+    2. Downloads video as .webm file
+    3. Processes as mp3 audio file
+    4. Deletes .webm file
+    """
     yt_opts = {
         "verbose": True,
         "format": "bestaudio/best",
@@ -15,4 +21,4 @@ def downloadSermonAudio(sermon_link: str) -> bool:
     }
 
     with yt_dlp.YoutubeDL(yt_opts) as ydl:
-        ydl.download("https://www.youtube.com/watch?v=BxUS1K7xu30")
+        ydl.download(sermon_link)

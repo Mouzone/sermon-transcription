@@ -1,9 +1,10 @@
+from typing import Optional, Dict
 from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 import logging
 
 
-def scrapeSermonLink() -> str:
+def scrapeSermonData() -> Optional[Dict[str, str]]:
     """
     1. Scrapes ArumdaunEM's livestreams page
     2. Finds the most most recent COMPLETED livestream
@@ -28,11 +29,12 @@ def scrapeSermonLink() -> str:
 
         # Get attributes safely
         href = recent_sermon.get("href")
+        title = recent_sermon.get("title")
 
         if not href:
             raise ValueError("No href found for the recent sermon")
 
-        return f"https://www.youtube.com{href}"
+        return {"title": title, "link": f"https://www.youtube.com{href}"}
 
     except Exception as e:
         logging.error(f"Error during scraping: {str(e)}")
