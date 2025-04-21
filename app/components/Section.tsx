@@ -12,7 +12,7 @@ export default function Section({ title, value }: SectionProps) {
             <h4 id={`${title}`} className="font-bold text-2xl">
                 {titleMappings[title]}
             </h4>
-            <div>{value}</div>
+            <div className="indent-8">{value}</div>
         </div>
     );
 }
