@@ -1,5 +1,5 @@
 import Section from "./components/Section";
-import { sections } from "./utility.ts/consts";
+import { sections, titleMappings } from "./utility.ts/consts";
 import supabase from "./utility.ts/supabase";
 
 export default async function Page() {
@@ -17,11 +17,32 @@ export default async function Page() {
     }
 
     return (
-        <div>
-            <div>{data["title"]}</div>
-            {sections.map((section) => (
-                <Section key={section} title={section} value={data[section]} />
-            ))}
+        <div className="p-4">
+            <div className="font-bold text-4xl text-center pb-8">
+                {data["title"]}
+            </div>
+            <div className="flex gap-4">
+                <nav className="flex flex-col gap-4 p-4">
+                    {sections.map((section) => (
+                        <a
+                            key={section}
+                            href={`#${section}`}
+                            className="underline"
+                        >
+                            {titleMappings[section]}
+                        </a>
+                    ))}
+                </nav>
+                <div className="flex flex-col gap-4">
+                    {sections.map((section) => (
+                        <Section
+                            key={section}
+                            title={section}
+                            value={data[section]}
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
