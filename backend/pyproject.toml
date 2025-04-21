@@ -8,6 +8,6 @@ dependencies = [
     "bs4>=0.0.2",
     "logging>=0.4.9.6",
     "lxml-html-clean>=0.4.2",
-    "pytubefix>=8.12.3",
     "requests-html>=0.10.0",
+    "yt-dlp>=2025.3.31",
 ]
