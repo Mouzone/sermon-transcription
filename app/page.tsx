@@ -12,7 +12,6 @@ export default async function Page() {
 
     if (error) {
         console.error("Error fetching recent data:", error);
-        // You might want to handle the error differently
         return <></>;
     }
 
