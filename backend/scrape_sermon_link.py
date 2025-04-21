@@ -3,7 +3,13 @@ from bs4 import BeautifulSoup
 import logging
 
 
-def scrape_sermon_link():
+def scrapeSermonLink() -> str:
+    """
+    1. Scrapes ArumdaunEM's livestreams page
+    2. Finds the most most recent COMPLETED livestream
+    3. Returns the link to the video
+        Returns None in case of error
+    """
     session = HTMLSession()
     try:
         r = session.get("https://www.youtube.com/@ArumdaunEM/streams", timeout=10)
@@ -22,17 +28,11 @@ def scrape_sermon_link():
 
         # Get attributes safely
         href = recent_sermon.get("href")
-        title = recent_sermon.get("title")
 
         if not href:
             raise ValueError("No href found for the recent sermon")
 
-        recent_sermon_data = {
-            "link": f"https://www.youtube.com{href}",
-            "title": title,
-        }
-
-        return recent_sermon_data
+        return f"https://www.youtube.com{href}"
 
     except Exception as e:
         logging.error(f"Error during scraping: {str(e)}")
@@ -40,6 +40,3 @@ def scrape_sermon_link():
 
     finally:
         session.close()
-
-
-print(scrape_sermon_link())
