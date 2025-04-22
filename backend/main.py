@@ -61,17 +61,17 @@ def main():
         },
     )
 
-    summary_json = json.loads(response.text)
-    sermon = Sermon(**summary_json)
+    sermon = json.loads(response.text)
 
     del sermon["bible_reading"]
     sermon["title"] = sermon_data["title"]
+    sermon["original_transcript"] = transcript
 
     url = os.environ.get("SUPABASE_URL")
     key = os.environ.get("SUPABASE_KEY")
     supabase: Client = create_client(url, key)
 
-    supabase.table("Sermons").insert(sermon).execute()
+    supabase.table("Sermon").insert(sermon).execute()
 
 
 if __name__ == "__main__":
