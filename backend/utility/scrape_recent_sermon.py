@@ -32,7 +32,7 @@ def scrapeRecentSermon() -> Optional[Dict[str, str]]:
 
         driver.get("https://www.youtube.com/@ArumdaunEM/streams")
 
-        # Wait for the video elements to load
+        # Wait for the videos elements to load
         WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "a#video-title-link"))
         )

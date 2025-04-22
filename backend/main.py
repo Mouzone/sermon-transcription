@@ -1,12 +1,13 @@
 from utility.scrape_recent_sermon import scrapeRecentSermon
 
-# from supabase import create_client, Client
+from supabase import create_client, Client
 from google import genai
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
 import assemblyai as aai
 import os
+import json
 
 # import yt_dlp
 
@@ -60,15 +61,17 @@ def main():
         },
     )
 
-    summary = response.text
-    print(summary)
-    # url = os.environ.get("SUPABASE_URL")
-    # key = os.environ.get("SUPABASE_KEY")
-    # supabase: Client = create_client(url, key)
+    summary_json = json.loads(response.text)
+    sermon = Sermon(**summary_json)
 
-    # # todo: check for response
-    # # todo: add title from sermon_data to data to be inserted
-    # supabase.table("Sermons").insert(summary).execute()
+    del sermon["bible_reading"]
+    sermon["title"] = sermon_data["title"]
+
+    url = os.environ.get("SUPABASE_URL")
+    key = os.environ.get("SUPABASE_KEY")
+    supabase: Client = create_client(url, key)
+
+    supabase.table("Sermons").insert(sermon).execute()
 
 
 if __name__ == "__main__":
