@@ -14,7 +14,7 @@ class Sermon(BaseModel):
     conclusion: str
 
 
-def process_transcript(transcript: str) -> Dict[str, str]:
+def outline(transcript: str) -> Dict[str, str]:
     """Process transcript with Gemini AI"""
     try:
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))

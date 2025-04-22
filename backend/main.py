@@ -1,9 +1,9 @@
 import logging
-from utility.scrape_recent_sermon import scrapeRecentSermon
-from utility.download_sermon import download_sermon
-from utility.transcribe import transcribe_audio
-from utility.outline_sermon import process_transcript
-from utility.store_sermon import store_sermon
+from utility.scrape_newest import scrapeNewest
+from utility.download import download
+from utility.transcribe import transcribe
+from utility.outline import outline
+from utility.store import store
 from utility.cleanup import cleanup
 
 # Configure logging
@@ -27,17 +27,17 @@ def main():
 
         # Step 1: Get sermon data
         logger.info("Scraping recent sermon data")
-        sermon_data = scrapeRecentSermon()
+        sermon_data = scrapeNewest()
 
         # Step 2: Download audio
-        filepath = download_sermon(sermon_data["link"])
+        filepath = download(sermon_data["link"])
 
         try:
             # Step 3: Transcribe audio
-            transcript = transcribe_audio(filepath)
+            transcript = transcribe(filepath)
 
             # Step 4: Process transcript
-            sermon = process_transcript(transcript)
+            sermon = outline(transcript)
 
             # Prepare final data
             del sermon["bible_reading"]
@@ -45,7 +45,7 @@ def main():
             sermon["original_transcript"] = transcript
 
             # Step 5: Store data
-            store_sermon(sermon)
+            store(sermon)
 
             logger.info("Sermon processing completed successfully")
 

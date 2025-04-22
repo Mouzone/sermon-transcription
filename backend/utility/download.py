@@ -2,7 +2,7 @@ import yt_dlp
 import os
 
 
-def download_sermon(link: str) -> str:
+def download(link: str) -> str:
     """Download sermon audio with retries and error handling"""
     yt_opts = {
         "verbose": True,

@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 
 
-def scrapeRecentSermon() -> Dict[str, str]:
+def scrapeNewest() -> Dict[str, str]:
     """
     1. Scrapes ArumdaunEM's livestreams page using Selenium
     2. Finds the most recent COMPLETED livestream

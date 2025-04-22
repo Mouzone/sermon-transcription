@@ -3,7 +3,7 @@ import os
 from supabase import Client, create_client
 
 
-def store_sermon(sermon_data: Dict[str, str]) -> None:
+def store(sermon_data: Dict[str, str]) -> None:
     """Store sermon data in Supabase"""
     try:
         url = os.environ.get("SUPABASE_URL")

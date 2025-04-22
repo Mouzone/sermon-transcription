@@ -2,7 +2,7 @@ import assemblyai as aai
 import os
 
 
-def transcribe_audio(filepath: str) -> str:
+def transcribe(filepath: str) -> str:
     """Transcribe audio file with AssemblyAI"""
     try:
         aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
