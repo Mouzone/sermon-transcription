@@ -1,5 +1,8 @@
-import assemblyai as aai
 import os
+import assemblyai as aai
+from utility.logging import setup_logger, SermonProcessingError
+
+logger = setup_logger(__name__)
 
 
 def transcribe(filepath: str) -> str:

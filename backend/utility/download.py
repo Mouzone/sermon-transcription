@@ -1,6 +1,10 @@
 import yt_dlp
 import os
 
+from utility.logging import setup_logger, SermonProcessingError
+
+logger = setup_logger(__name__)
+
 
 def download(link: str) -> str:
     """Download sermon audio with retries and error handling"""

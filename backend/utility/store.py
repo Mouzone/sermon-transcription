@@ -1,6 +1,9 @@
-from typing import Dict
 import os
+from typing import Dict
 from supabase import Client, create_client
+from utility.logging import setup_logger, SermonProcessingError
+
+logger = setup_logger(__name__)
 
 
 def store(sermon_data: Dict[str, str]) -> None:

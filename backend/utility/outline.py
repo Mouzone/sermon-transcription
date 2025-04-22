@@ -1,8 +1,9 @@
-from pydantic import BaseModel
-from google import genai
+import os
 import json
 from typing import Dict
-import os
+from google import genai
+from pydantic import BaseModel
+from utility.logging import setup_logger, SermonProcessingError
 
 
 class Sermon(BaseModel):
@@ -12,6 +13,9 @@ class Sermon(BaseModel):
     sermon: str
     closing_prayer: str
     conclusion: str
+
+
+logger = setup_logger(__name__)
 
 
 def outline(transcript: str) -> Dict[str, str]:

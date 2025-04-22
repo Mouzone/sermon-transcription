@@ -1,4 +1,3 @@
-import logging
 from utility.scrape_newest import scrapeNewest
 from utility.download import download
 from utility.transcribe import transcribe
@@ -6,19 +5,7 @@ from utility.outline import outline
 from utility.store import store
 from utility.cleanup import cleanup
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("sermon_processor.log"), logging.StreamHandler()],
-)
-logger = logging.getLogger(__name__)
-
-
-class SermonProcessingError(Exception):
-    """Custom exception for sermon processing errors"""
-
-    pass
+from utility.logging import SermonProcessingError, setup_logger
 
 
 def main():
@@ -69,4 +56,5 @@ def main():
 
 
 if __name__ == "__main__":
+    logger = setup_logger(__name__)
     main()

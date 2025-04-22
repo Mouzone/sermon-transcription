@@ -1,4 +1,7 @@
 import os
+from utility.logging import setup_logger
+
+logger = setup_logger(__name__)
 
 
 def cleanup(filepath):
