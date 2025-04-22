@@ -1,6 +1,5 @@
 from typing import Dict
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -29,7 +28,11 @@ def scrapeNewest() -> Dict[str, str]:
 
     driver = None
     try:
-        driver = webdriver.Chrome(service=Service(), options=options)
+        selenium_hub = "http://selenium-chrome:4444/wd/hub"
+
+        driver = webdriver.Remote(
+            command_executor=selenium_hub, options=webdriver.ChromeOptions()
+        )
         driver.set_window_size(1280, 800)
 
         driver.get("https://www.youtube.com/@ArumdaunEM/streams")
