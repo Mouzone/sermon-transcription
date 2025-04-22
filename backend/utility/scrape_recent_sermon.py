@@ -38,3 +38,6 @@ def scrapeRecentSermon() -> Optional[Dict[str, str]]:
 
     except Exception as e:
         logging.error(f"Error during scraping: {str(e)}")
+
+    finally:
+        session.close()
