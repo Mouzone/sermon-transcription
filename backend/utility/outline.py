@@ -22,8 +22,6 @@ def outline(transcript: str) -> Dict[str, str]:
     """Process transcript with Gemini AI"""
     try:
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-        if not client.api_key:
-            raise ValueError("Gemini API key not found")
 
         prompt = f"""
             Given this sermon transcript: {transcript}. Split all the text into six

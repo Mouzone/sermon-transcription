@@ -7,6 +7,8 @@ from utility.cleanup import cleanup
 
 from utility.logging import SermonProcessingError, setup_logger
 
+from dotenv import load_dotenv
+
 
 def main():
     try:
@@ -56,5 +58,6 @@ def main():
 
 
 if __name__ == "__main__":
+    load_dotenv()
     logger = setup_logger(__name__)
     main()

@@ -1,0 +1,31 @@
+2025-04-22 10:13:51,612 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-22 10:13:51,612 - INFO - __main__ - Scraping recent sermon data
+2025-04-22 10:14:03,423 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=FLHbiM1GmeA
+2025-04-22 10:15:04,636 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-22 10:15:04,636 - ERROR - utility.transcribe - Transcription error: AssemblyAI API key not found
+2025-04-22 10:15:04,636 - ERROR - __main__ - Sermon processing failed: Transcription failed
+2025-04-22 10:15:04,639 - INFO - utility.cleanup - Cleaned up file: ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-22 10:15:04,639 - ERROR - __main__ - Sermon processing pipeline failed: Transcription failed
+2025-04-22 10:17:04,802 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-22 10:17:04,802 - INFO - __main__ - Scraping recent sermon data
+2025-04-22 10:17:15,064 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=FLHbiM1GmeA
+2025-04-22 10:18:08,138 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-22 10:18:08,138 - INFO - utility.transcribe - Starting transcription for ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-22 10:18:40,187 - INFO - utility.transcribe - Transcription completed successfully
+2025-04-22 10:18:40,246 - ERROR - utility.outline - Transcript processing failed: 'Client' object has no attribute 'api_key'
+2025-04-22 10:18:40,246 - ERROR - __main__ - Sermon processing failed: Transcript processing failed
+2025-04-22 10:18:40,258 - INFO - utility.cleanup - Cleaned up file: ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-22 10:18:40,258 - ERROR - __main__ - Sermon processing pipeline failed: Transcript processing failed
+2025-04-22 10:20:03,169 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-22 10:20:03,170 - INFO - __main__ - Scraping recent sermon data
+2025-04-22 10:20:13,604 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=FLHbiM1GmeA&pp=0gcJCX4JAYcqIYzv
+2025-04-22 10:21:08,556 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-22 10:21:08,557 - INFO - utility.transcribe - Starting transcription for ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-22 10:21:42,165 - INFO - utility.transcribe - Transcription completed successfully
+2025-04-22 10:21:42,218 - INFO - utility.outline - Sending transcript to Gemini for processing
+2025-04-22 10:22:02,707 - INFO - utility.outline - Successfully processed transcript
+2025-04-22 10:22:02,708 - INFO - utility.store - Connecting to Supabase
+2025-04-22 10:22:02,764 - INFO - utility.store - Storing sermon data
+2025-04-22 10:22:03,584 - INFO - utility.store - Sermon stored successfully
+2025-04-22 10:22:03,584 - INFO - __main__ - Sermon processing completed successfully
+2025-04-22 10:22:03,589 - INFO - utility.cleanup - Cleaned up file: ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
