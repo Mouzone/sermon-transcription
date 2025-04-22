@@ -28,7 +28,7 @@ RUN pip install --no-cache-dir uv==0.1.44
 COPY --chown=appuser:appuser pyproject.toml .
 
 # Install dependencies (as root)
-RUN uv pip install.
+RUN uv pip install .
 
 # Switch to non-privileged user
 USER appuser
