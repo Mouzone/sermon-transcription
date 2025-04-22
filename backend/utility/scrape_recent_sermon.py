@@ -1,4 +1,4 @@
-from typing import Optional, Dict
+from typing import Dict
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -6,15 +6,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-import logging
 
 
-def scrapeRecentSermon() -> Optional[Dict[str, str]]:
+def scrapeRecentSermon() -> Dict[str, str]:
     """
     1. Scrapes ArumdaunEM's livestreams page using Selenium
     2. Finds the most recent COMPLETED livestream
     3. Returns the title and link to the video
-        Returns None in case of error
     """
     options = Options()
     options.add_argument("--headless")
@@ -51,8 +49,8 @@ def scrapeRecentSermon() -> Optional[Dict[str, str]]:
         return {"title": title, "link": f"https://www.youtube.com{href}"}
 
     except Exception as e:
-        logging.error(f"Error during scraping: {str(e)}")
-        return None
+        logger.error(f"Failed to scrape recent sermon: {str(e)}")
+        raise SermonProcessingError("Sermon scraping failed") from e
 
     finally:
         if driver:

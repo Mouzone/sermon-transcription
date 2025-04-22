@@ -1,77 +1,71 @@
+import logging
 from utility.scrape_recent_sermon import scrapeRecentSermon
+from utility.download_sermon import download_sermon
+from utility.transcribe import transcribe_audio
+from utility.outline_sermon import process_transcript
+from utility.store_sermon import store_sermon
+from utility.cleanup import cleanup
 
-from supabase import create_client, Client
-from google import genai
-from pydantic import BaseModel
-from dotenv import load_dotenv
-
-import assemblyai as aai
-import os
-import json
-
-# import yt_dlp
-
-
-class Sermon(BaseModel):
-    anecdote: str
-    opening_prayer: str
-    bible_reading: str
-    sermon: str
-    closing_prayer: str
-    conclusion: str
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    handlers=[logging.FileHandler("sermon_processor.log"), logging.StreamHandler()],
+)
+logger = logging.getLogger(__name__)
 
 
-load_dotenv()
+class SermonProcessingError(Exception):
+    """Custom exception for sermon processing errors"""
+
+    pass
 
 
 def main():
-    sermon_data = scrapeRecentSermon()
-    print(sermon_data)
-    # yt_opts = {
-    #     "verbose": True,
-    #     "format": "bestaudio/best",
-    #     "outtmpl": "sermons/%(title)s.%(ext)s",
-    # }
-    # with yt_dlp.YoutubeDL(yt_opts) as ydl:
-    #     ydl.download(sermon_data["link"])
+    try:
+        logger.info("Starting sermon processing pipeline")
 
-    aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
-    transcriber = aai.Transcriber()
+        # Step 1: Get sermon data
+        logger.info("Scraping recent sermon data")
+        sermon_data = scrapeRecentSermon()
 
-    filename = os.listdir("./sermons")[0]
-    filepath = os.path.join("./sermons", filename)
-    transcript_obj = transcriber.transcribe(filepath)
-    transcript = transcript_obj.text
+        # Step 2: Download audio
+        filepath = download_sermon(sermon_data["link"])
 
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+        try:
+            # Step 3: Transcribe audio
+            transcript = transcribe_audio(filepath)
 
-    prompt = f"""
-        Given this sermon transcript: {transcript}. Split all the text into six parts:
-        opening anecdote, first prayer, bible passage reading, sermon, final prayer
-        and conclusion. Clean up the transcript removing any audio cues that are
-        unnnecessary, and do your best to clean it up to be readable and representable
-        without omitting too much espcially in sermon
-    """
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt,
-        config={
-            "response_mime_type": "application/json",
-            "response_schema": Sermon,
-        },
-    )
+            # Step 4: Process transcript
+            sermon = process_transcript(transcript)
 
-    sermon = json.loads(response.text)
+            # Prepare final data
+            del sermon["bible_reading"]
+            sermon["title"] = sermon_data["title"]
+            sermon["original_transcript"] = transcript
 
-    del sermon["bible_reading"]
-    sermon["title"] = sermon_data["title"]
-    sermon["original_transcript"] = transcript
+            # Step 5: Store data
+            store_sermon(sermon)
 
-    url = os.environ.get("SUPABASE_URL")
-    key = os.environ.get("SUPABASE_KEY")
-    supabase: Client = create_client(url, key)
+            logger.info("Sermon processing completed successfully")
 
-    supabase.table("Sermon").insert(sermon).execute()
+        except Exception as e:
+            logger.error(f"Sermon processing failed: {str(e)}")
+            raise
+
+        finally:
+            # Cleanup downloaded files
+            cleanup(filepath)
+
+    except SermonProcessingError as e:
+        logger.error(f"Sermon processing pipeline failed: {str(e)}")
+        # Here you could add notification logic (email, Slack, etc.)
+        raise
+    except Exception as e:
+        logger.critical(
+            f"Unexpected error in sermon processing: {str(e)}", exc_info=True
+        )
+        raise
 
 
 if __name__ == "__main__":
