@@ -60,6 +60,7 @@ dependencies = [
     { name = "google-genai" },
     { name = "logging" },
     { name = "lxml-html-clean" },
+    { name = "pydantic" },
     { name = "requests-html" },
     { name = "yt-dlp" },
 ]
@@ -72,6 +73,7 @@ requires-dist = [
     { name = "google-genai", specifier = ">=1.11.0" },
     { name = "logging", specifier = ">=0.4.9.6" },
     { name = "lxml-html-clean", specifier = ">=0.4.2" },
+    { name = "pydantic", specifier = ">=2.11.3" },
     { name = "requests-html", specifier = ">=0.10.0" },
     { name = "yt-dlp", specifier = ">=2025.3.31" },
 ]
