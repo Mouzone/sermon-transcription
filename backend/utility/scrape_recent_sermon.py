@@ -1,39 +1,43 @@
 from typing import Optional, Dict
-import logging
-from pyppeteer import launch
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
+import logging
 
 
-async def scrapeRecentSermon() -> Optional[Dict[str, str]]:
+def scrapeRecentSermon() -> Optional[Dict[str, str]]:
     """
-    1. Scrapes ArumdaunEM's livestreams page using Pyppeteer
+    1. Scrapes ArumdaunEM's livestreams page using Selenium
     2. Finds the most recent COMPLETED livestream
     3. Returns the title and link to the video
         Returns None in case of error
     """
-    browser = None
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML"
+        ", like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+    )
+
+    driver = None
     try:
-        browser = await launch(headless=True, args=["--no-sandbox"])
-        page = await browser.newPage()
+        driver = webdriver.Chrome(service=Service(), options=options)
+        driver.set_window_size(1280, 800)
 
-        # Set viewport and user agent
-        await page.setViewport({"width": 1280, "height": 800})
-        await page.setUserAgent(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like "
-            "Gecko) Chrome/90.0.4430.212 Safari/537.36"
-        )
-
-        await page.goto(
-            "https://www.youtube.com/@ArumdaunEM/streams",
-            {"waitUntil": "networkidle2", "timeout": 30000},
-        )
+        driver.get("https://www.youtube.com/@ArumdaunEM/streams")
 
         # Wait for the video elements to load
-        await page.waitForSelector("a#video-title-link", {"timeout": 10000})
+        WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "a#video-title-link"))
+        )
 
-        content = await page.content()
-        soup = BeautifulSoup(content, "html.parser")
-
+        soup = BeautifulSoup(driver.page_source, "html.parser")
         recent_sermon = soup.find("a", id="video-title-link")
         if not recent_sermon:
             raise ValueError("Could not find the recent sermon element")
@@ -51,5 +55,5 @@ async def scrapeRecentSermon() -> Optional[Dict[str, str]]:
         return None
 
     finally:
-        if browser:
-            await browser.close()
+        if driver:
+            driver.quit()
