@@ -1,2 +1,4 @@
 .env
 sermons/
+__pycache__/
+utility/__pycache__/
