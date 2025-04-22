@@ -23,7 +23,7 @@ def main():
             # Step 3: Transcribe audio
             transcript = transcribe(filepath)
 
-            # Step 4: Process transcript
+            # Step 4: Outline transcript
             sermon = outline(transcript)
 
             # Prepare final data
@@ -41,12 +41,12 @@ def main():
             raise
 
         finally:
-            # Cleanup downloaded files
+            # Remove downloaded sermon
             cleanup(filepath)
 
     except SermonProcessingError as e:
         logger.error(f"Sermon processing pipeline failed: {str(e)}")
-        # Here you could add notification logic (email, Slack, etc.)
+        # Add notification logic
         raise
     except Exception as e:
         logger.critical(
