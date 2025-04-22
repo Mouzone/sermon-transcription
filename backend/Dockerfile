@@ -1,43 +1,30 @@
-# syntax=docker/dockerfile:1
+# Stage 1: Builder
+FROM python:3.12-slim-bookworm
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-ARG PYTHON_VERSION=3.12.3
-FROM python:${PYTHON_VERSION}-slim as base
+# Install Chrome and dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
 
-# Python settings
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
+# Install chromedriver (match Chrome version!)
+RUN wget -q https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip \
+    && unzip chromedriver_linux64.zip \
+    && mv chromedriver /usr/local/bin/ \
+    && rm chromedriver_linux64.zip
+    
+# Copy the project into the image
+ADD . /app
 
+# Sync the project into a new environment, asserting the lockfile is up to date
 WORKDIR /app
+RUN uv sync --locked
 
-# Create non-privileged user
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
-
-# Install uv (as root)
-RUN pip install --no-cache-dir uv==0.1.44
-
-# Copy dependency files first for better caching
-COPY --chown=appuser:appuser pyproject.toml .
-
-# Install dependencies (as root)
-RUN uv pip install .
-
-# Switch to non-privileged user
-USER appuser
-
-# Copy application code
-COPY --chown=appuser:appuser . .
-
-# Expose application port
-EXPOSE 8000
-
-# Run the application
+# Create sermons directory and run
+RUN mkdir -p sermons
 CMD ["uv", "run", "main.py"]
