@@ -1,33 +1,43 @@
 from typing import Optional, Dict
-from requests_html import HTMLSession
-from bs4 import BeautifulSoup
 import logging
+from pyppeteer import launch
+from bs4 import BeautifulSoup
 
 
-def scrapeRecentSermon() -> Optional[Dict[str, str]]:
+async def scrapeRecentSermon() -> Optional[Dict[str, str]]:
     """
-    1. Scrapes ArumdaunEM's livestreams page
-    2. Finds the most most recent COMPLETED livestream
+    1. Scrapes ArumdaunEM's livestreams page using Pyppeteer
+    2. Finds the most recent COMPLETED livestream
     3. Returns the title and link to the video
         Returns None in case of error
     """
-    session = HTMLSession()
+    browser = None
     try:
-        r = session.get("https://www.youtube.com/@ArumdaunEM/streams", timeout=10)
-        r.raise_for_status()  # Raise an exception for HTTP errors
+        browser = await launch(headless=True, args=["--no-sandbox"])
+        page = await browser.newPage()
 
-        # Render JavaScript with longer timeout
-        r.html.render(timeout=20, sleep=3)
+        # Set viewport and user agent
+        await page.setViewport({"width": 1280, "height": 800})
+        await page.setUserAgent(
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like "
+            "Gecko) Chrome/90.0.4430.212 Safari/537.36"
+        )
 
-        # Parse with BeautifulSoup
-        soup = BeautifulSoup(r.html.html, "html.parser")
+        await page.goto(
+            "https://www.youtube.com/@ArumdaunEM/streams",
+            {"waitUntil": "networkidle2", "timeout": 30000},
+        )
 
-        # More robust element finding
+        # Wait for the video elements to load
+        await page.waitForSelector("a#video-title-link", {"timeout": 10000})
+
+        content = await page.content()
+        soup = BeautifulSoup(content, "html.parser")
+
         recent_sermon = soup.find("a", id="video-title-link")
         if not recent_sermon:
             raise ValueError("Could not find the recent sermon element")
 
-        # Get attributes safely
         href = recent_sermon.get("href")
         title = recent_sermon.get("title")
 
@@ -38,6 +48,8 @@ def scrapeRecentSermon() -> Optional[Dict[str, str]]:
 
     except Exception as e:
         logging.error(f"Error during scraping: {str(e)}")
+        return None
 
     finally:
-        session.close()
+        if browser:
+            await browser.close()

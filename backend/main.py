@@ -5,9 +5,10 @@ from utility.scrape_recent_sermon import scrapeRecentSermon
 # from pydantic import BaseModel
 from dotenv import load_dotenv
 
-# import assemblyai as aai
-# import os
+import assemblyai as aai
+import os
 import yt_dlp
+import asyncio
 
 
 # class Sermon(BaseModel):
@@ -22,8 +23,8 @@ import yt_dlp
 load_dotenv()
 
 
-def main():
-    sermon_data = scrapeRecentSermon()
+async def main():
+    sermon_data = await scrapeRecentSermon()
     print(sermon_data)
     yt_opts = {
         "verbose": True,
@@ -33,14 +34,14 @@ def main():
     with yt_dlp.YoutubeDL(yt_opts) as ydl:
         ydl.download(sermon_data["link"])
 
-    # aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
-    # transcriber = aai.Transcriber()
+    aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
+    transcriber = aai.Transcriber()
 
-    # filename = os.listdir("../sermons")[0]
-    # filepath = os.path.join("../sermons", filename)
-    # transcript_obj = transcriber.transcribe(filepath)
-    # transcript = transcript_obj.text
-    # print(transcript)
+    filename = os.listdir("../sermons")[0]
+    filepath = os.path.join("../sermons", filename)
+    transcript_obj = transcriber.transcribe(filepath)
+    transcript = transcript_obj.text
+    print(transcript)
 
     # client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
@@ -72,4 +73,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
