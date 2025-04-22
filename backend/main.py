@@ -1,6 +1,5 @@
 from utility.scrape_recent_sermon import scrapeRecentSermon
 from supabase import create_client, Client
-import asyncio
 import os
 from google import genai
 from pydantic import BaseModel
@@ -21,8 +20,8 @@ class Sermon(BaseModel):
 load_dotenv()
 
 
-async def main():
-    sermon_data = await scrapeRecentSermon()
+def main():
+    sermon_data = scrapeRecentSermon()
 
     yt_opts = {
         "verbose": True,
@@ -72,4 +71,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
