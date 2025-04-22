@@ -1,4 +1,4 @@
-from helper_functions.scrape_recent_sermon import scrapeRecentSermon
+from utility.scrape_recent_sermon import scrapeRecentSermon
 from supabase import create_client, Client
 import asyncio
 import os
