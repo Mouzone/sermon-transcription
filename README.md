@@ -1,3 +1,9 @@
+# 🎙️ Arumdaum EM Sermon Scraper & Transcriber
+
+An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTube livestreams, transcribes it using AssemblyAI, organizes it into readable sections with Gemini 2.0 Flash, and stores it in a Supabase database. Includes a frontend built with Next.js for viewing.
+
+---
+
 # Backend
 
 ## 🧰 Stack
@@ -43,6 +49,11 @@
 - Tailwind CSS
 
 ## ⚙️ Methodology
+
+---
+# Future Improvements
+- Run locally on a Raspberry Pi using my local ip since it seems local ips are not flagged for downloading a video once a day, and can run a cron job to run daily
+- Change Frontend UI to be more readable
 - Deployed on [Vercel](https://vercel.com)
 - Fetches the latest sermon that has been transcribed and outlined by the backend.
 - Uses React Server Components to:
