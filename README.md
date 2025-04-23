@@ -60,4 +60,4 @@ An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTub
 # Future Improvements
 
 - Run locally on a Raspberry Pi using my local ip since it seems local ips are not flagged for downloading a video once a day, and can run a cron job to run daily
-- Change Frontend UI to be more readable
+- Add discord notifications on failures and successes
