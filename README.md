@@ -49,13 +49,14 @@ An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTub
 - Tailwind CSS
 
 ## ⚙️ Methodology
-
----
-# Future Improvements
-- Run locally on a Raspberry Pi using my local ip since it seems local ips are not flagged for downloading a video once a day, and can run a cron job to run daily
-- Change Frontend UI to be more readable
-- Deployed on [Vercel](https://vercel.com)
+- Deployed on [Vercel](https://sermon-transcription.vercel.app/)
 - Fetches the latest sermon that has been transcribed and outlined by the backend.
 - Uses React Server Components to:
   - Simplify fetching using one-liner PostgREST queries
   - Avoid extra complexity (e.g., loading spinners)
+---
+
+# Future Improvements
+
+- Run locally on a Raspberry Pi using my local ip since it seems local ips are not flagged for downloading a video once a day, and can run a cron job to run daily
+- Change Frontend UI to be more readable
