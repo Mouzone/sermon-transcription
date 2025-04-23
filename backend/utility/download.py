@@ -13,6 +13,7 @@ def download(link: str) -> str:
         "format": "bestaudio/best",
         "outtmpl": "sermons/%(title)s.%(ext)s",
         "retries": 3,
+        "cookies": "../youtube_cookies.txt",
     }
 
     try:
