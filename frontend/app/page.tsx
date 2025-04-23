@@ -24,7 +24,7 @@ export default async function Page() {
         <div className="p-12">
             <div className="text-center text-xl pb-4">{date}</div>
             <div className="font-bold text-4xl text-center pb-8">{title}</div>
-            <div className="flex justify-center gap-10">
+            <div className="flex justify-center gap-10 ">
                 <Nav />
                 <div className="flex flex-col gap-4 w-150">
                     {sections.map((section) => (

@@ -6,7 +6,7 @@ import { sections, titleMappings } from "../utility.ts/consts";
 export default function Nav() {
     const [selectedSection, setSelectedSection] = useState("");
     return (
-        <nav className="sticky top-4 self-start flex flex-col gap-4 p-4 bg-white shadow rounded min-w-[170px]">
+        <nav className="hidden sticky top-4 self-start sm:flex flex-col gap-4 p-4 bg-white shadow rounded min-w-[170px] ">
             {sections.map((section) => (
                 <a
                     key={section}
