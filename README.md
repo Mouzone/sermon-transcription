@@ -12,7 +12,7 @@ An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTub
 - Docker
 
 ## ⚙️ Methodology
-1. Scrapes the [YouTube livestreams page of Arumdaum EM](https://www.youtube.com/@ArumdaumEM/live) to find the latest sermon's title and YouTube link.
+1. Scrapes the [YouTube livestreams page of Arumdaum EM](https://www.youtube.com/@ArumdaunEM/streams) to find the latest sermon's title and YouTube link.
 2. Downloads the sermon into a folder named `sermons`.
 3. Sends the video file to AssemblyAI for transcription.
 4. Passes the transcription to Google's Gemini 2.0 Flash model to:
