@@ -1,9 +1,11 @@
-import os
 import json
+import os
 from typing import Dict
+
 from google import genai
 from pydantic import BaseModel
-from utility.logging import setup_logger, SermonProcessingError
+
+from utility.logging import SermonProcessingError, setup_logger
 
 
 class Sermon(BaseModel):
@@ -24,11 +26,13 @@ def outline(transcript: str) -> Dict[str, str]:
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
         prompt = f"""
-            Given this sermon transcript: {transcript}. Split all the text into six
-            parts: opening anecdote, first prayer, bible passage reading, sermon, final
-            prayer and conclusion. Clean up the transcript removing any audio cues that
-            are unnnecessary, and do your best to clean it up to be readable and
-            representable without omitting too much espcially in sermon
+           Given this sermon transcript: {transcript}, segment it 
+           into these six parts: opening anecdote, first prayer, bible 
+           passage reading, sermon, final prayer, and conclusion. 
+           For each segment, clean the text for readability as in a book: 
+           add paragraphs, remove unnecessary audio cues (like 'uh'), and 
+           preserve the original content as fully as possible, especially 
+           within the sermon.
         """
 
         logger.info("Sending transcript to Gemini for processing")
