@@ -8,8 +8,8 @@ type SectionProps = {
 
 export default function Section({ title, value }: SectionProps) {
     return (
-        <div>
-            <h4 id={`${title}`} className="font-bold text-2xl">
+        <div className="pb-4">
+            <h4 id={`${title}`} className="font-bold text-2xl pb-2">
                 {titleMappings[title]}
             </h4>
             <div className="indent-8">{value}</div>
