@@ -29,3 +29,24 @@
 2025-04-22 10:22:03,584 - INFO - utility.store - Sermon stored successfully
 2025-04-22 10:22:03,584 - INFO - __main__ - Sermon processing completed successfully
 2025-04-22 10:22:03,589 - INFO - utility.cleanup - Cleaned up file: ./sermons/Tues 4.22.25 Numbers 14： 11-25 The Cost of Disobedience.mp4
+2025-04-23 10:30:50,580 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-23 10:30:50,581 - INFO - __main__ - Scraping recent sermon data
+2025-04-23 10:31:03,795 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=YdJp37G-PsA
+2025-04-23 10:32:56,498 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-23 10:32:56,499 - INFO - __main__ - Scraping recent sermon data
+2025-04-23 10:33:09,258 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=YdJp37G-PsA
+2025-04-23 10:35:16,070 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-23 10:35:16,071 - INFO - __main__ - Scraping recent sermon data
+2025-04-23 10:35:24,747 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=YdJp37G-PsA&pp=0gcJCX4JAYcqIYzv
+2025-04-23 10:38:04,209 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-23 10:38:04,210 - INFO - __main__ - Scraping recent sermon data
+2025-04-23 10:38:14,159 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=YdJp37G-PsA
+2025-04-23 10:49:38,553 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-23 10:49:38,554 - INFO - __main__ - Scraping recent sermon data
+2025-04-23 10:49:50,002 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=YdJp37G-PsA
+2025-04-23 10:50:57,607 - INFO - __main__ - Starting sermon processing pipeline
+2025-04-23 10:50:57,607 - INFO - __main__ - Scraping recent sermon data
+2025-04-23 10:51:09,282 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=YdJp37G-PsA
+2025-04-23 10:51:18,656 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Wed 4.23.25 Numbers 14： 26-38 God's Message for the Crowds.mp4
+2025-04-23 10:51:18,657 - INFO - utility.transcribe - Starting transcription for ./sermons/Wed 4.23.25 Numbers 14： 26-38 God's Message for the Crowds.mp4
+2025-04-23 10:51:38,914 - INFO - utility.cleanup - Cleaned up file: ./sermons/Wed 4.23.25 Numbers 14： 26-38 God's Message for the Crowds.mp4
