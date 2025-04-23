@@ -2,6 +2,7 @@
 
 An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTube livestreams, transcribes it using AssemblyAI, organizes it into readable sections with Gemini 2.0 Flash, and stores it in a Supabase database. Includes a frontend built with Next.js for viewing.
 
+[Read Today's Sermon](https://sermon-transcription.vercel.app/)
 ---
 
 # Backend
