@@ -16,11 +16,11 @@ export default async function Page() {
     }
 
     return (
-        <div className="p-4">
+        <div className="p-12">
             <div className="font-bold text-4xl text-center pb-8">
                 {data["title"]}
             </div>
-            <div className="flex gap-4">
+            <div className="flex justify-center gap-4">
                 <nav className="flex flex-col gap-4 p-4">
                     {sections.map((section) => (
                         <a
@@ -32,7 +32,7 @@ export default async function Page() {
                         </a>
                     ))}
                 </nav>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 w-150">
                     {sections.map((section) => (
                         <Section
                             key={section}
