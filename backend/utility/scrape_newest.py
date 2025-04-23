@@ -4,7 +4,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from bs4 import BeautifulSoup
 from utility.logging import setup_logger, SermonProcessingError
 
@@ -13,28 +12,24 @@ logger = setup_logger(__name__)
 
 def scrapeNewest() -> Dict[str, str]:
     """
-    1. Scrapes ArumdaunEM's livestreams page using Selenium
-    2. Finds the most recent COMPLETED livestream
-    3. Returns the title and link to the video
+    Scrapes ArumdaunEM's livestreams page using Selenium
     """
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument(
-        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML"
-        ", like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1280,800")
+    chrome_options.add_argument(
+        "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
     )
 
-    driver = None
+    # For newer Selenium versions (4.6+)
+    service = webdriver.ChromeService()
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+
     try:
-        selenium_hub = "http://selenium-chrome:4444/wd/hub"
-
-        driver = webdriver.Remote(
-            command_executor=selenium_hub, options=webdriver.ChromeOptions()
-        )
-        driver.set_window_size(1280, 800)
-
         driver.get("https://www.youtube.com/@ArumdaunEM/streams")
 
         # Wait for the videos elements to load
@@ -60,5 +55,4 @@ def scrapeNewest() -> Dict[str, str]:
         raise SermonProcessingError("Sermon scraping failed") from e
 
     finally:
-        if driver:
-            driver.quit()
+        driver.quit()

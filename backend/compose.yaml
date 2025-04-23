@@ -1,36 +1,17 @@
-version: '3.12.3'
+version: '3.12'
 
 services:
-  # Selenium browser (Chrome)
-  selenium-chrome:
-    image: selenium/standalone-chrome:latest
-    ports:
-      - "4444:4444"    # Selenium WebDriver port
-    shm_size: 2gb      # Fix for Chrome crashes in Docker
-    networks:
-      - selenium-net
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4444/wd/hub/status"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
-
-  # Your Python script container
-  script:
+  scraper:
     build: .
-    depends_on:
-      selenium-chrome:
-        condition: service_healthy
     environment:
-      SELENIUM_HUB: "http://selenium-chrome:4444/wd/hub"  # Added /wd/hub for Selenium 4
-    networks:
-      - selenium-net
-    env_file: 
-      - .env
-    # Optional: Add a small delay after selenium is healthy
-    command: sh -c "sleep 5 && uv run main.py"
-
-networks:
-  selenium-net:
-    driver: bridge
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+    # Uncomment if you need to debug with a visible browser
+    # environment:
+    #   - DISPLAY=:99
+    # ports:
+    #   - 5900:5900  # For VNC if you want to view the browser
