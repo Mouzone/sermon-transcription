@@ -22,12 +22,6 @@ An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTub
 5. Uploads the original transcription and the sectioned version to a Supabase database via PostgREST.
 6. Deletes the downloaded video file to clean up.
 
-## 🐳 Docker
-- Dockerized to run on Google Cloud with Cloud Scheduler for daily automation.
-- Uses `uv` inside the Docker container for dependency installation.
-- Installs Chrome in the container so Selenium can scrape properly.
-- Creates a `sermons` folder in the container to store the downloaded YouTube video file.
-
 ## ▶️ Run Instructions
 - Requires a `.env` file with the following credentials:
   - AssemblyAI API key
@@ -37,6 +31,7 @@ An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTub
   - Locally as a Docker container
   - Directly with `uv run main.py`
 - ⚠️ Google Cloud Run’s IPs are often blacklisted from downloading YouTube videos (due to being datacenter IPs). Running locally may be necessary.
+For detailed setup and run instructions, including information on environment variables and Docker, please see the `backend/README.md`.
 
 ---
 
@@ -55,6 +50,10 @@ An automated pipeline that scrapes the latest sermon from Arumdaum EM’s YouTub
 - Uses React Server Components to:
   - Simplify fetching using one-liner PostgREST queries
   - Avoid extra complexity (e.g., loading spinners)
+
+---
+## ▶️ Run Instructions & Project Structure
+For detailed setup, run instructions, and information on the project structure, please see the `frontend/README.md`.
 ---
 
 # Future Improvements
