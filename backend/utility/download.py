@@ -13,8 +13,6 @@ def download(link: str) -> str:
         "format": "bestaudio/best",
         "outtmpl": "sermons/%(title)s.%(ext)s",
         "retries": 3,
-        # "cookies": "../youtube_cookies.txt",
-        # "extractor_args": {"youtube": f"po_token=web.gvs+{os.getenv('PO_TOKEN')}"},
     }
 
     try:
