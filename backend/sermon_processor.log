@@ -50,3 +50,56 @@
 2025-04-23 10:51:18,656 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Wed 4.23.25 Numbers 14： 26-38 God's Message for the Crowds.mp4
 2025-04-23 10:51:18,657 - INFO - utility.transcribe - Starting transcription for ./sermons/Wed 4.23.25 Numbers 14： 26-38 God's Message for the Crowds.mp4
 2025-04-23 10:51:38,914 - INFO - utility.cleanup - Cleaned up file: ./sermons/Wed 4.23.25 Numbers 14： 26-38 God's Message for the Crowds.mp4
+2025-07-19 20:06:16,500 - INFO - __main__ - Starting sermon processing pipeline
+2025-07-19 20:06:16,501 - INFO - __main__ - Scraping recent sermon data
+2025-07-19 20:06:28,293 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=UXVXtYdgg7g
+2025-07-19 20:07:12,535 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:07:12,536 - INFO - utility.transcribe - Starting transcription for ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:07:39,389 - INFO - utility.transcribe - Transcription completed successfully
+2025-07-19 20:07:39,435 - INFO - utility.outline - Sending transcript to Gemini for processing
+2025-07-19 20:08:01,562 - INFO - utility.outline - Successfully processed transcript
+2025-07-19 20:08:01,563 - INFO - utility.store - Connecting to Supabase
+2025-07-19 20:08:01,621 - INFO - utility.store - Storing sermon data
+2025-07-19 20:08:01,941 - ERROR - utility.store - Failed to store sermon: {'code': '42501', 'details': None, 'hint': None, 'message': 'new row violates row-level security policy for table "Sermon"'}
+2025-07-19 20:08:01,941 - ERROR - __main__ - Sermon processing failed: Sermon storage failed
+2025-07-19 20:08:01,944 - INFO - utility.cleanup - Cleaned up file: ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:08:01,944 - ERROR - __main__ - Sermon processing pipeline failed: Sermon storage failed
+2025-07-19 20:12:24,625 - INFO - __main__ - Starting sermon processing pipeline
+2025-07-19 20:12:24,627 - INFO - __main__ - Scraping recent sermon data
+2025-07-19 20:12:41,962 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=UXVXtYdgg7g
+2025-07-19 20:12:54,228 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:12:54,228 - INFO - utility.transcribe - Starting transcription for ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:13:20,508 - INFO - utility.transcribe - Transcription completed successfully
+2025-07-19 20:13:20,570 - INFO - utility.outline - Sending transcript to Gemini for processing
+2025-07-19 20:13:44,308 - INFO - utility.outline - Successfully processed transcript
+2025-07-19 20:13:44,309 - INFO - utility.store - Connecting to Supabase
+2025-07-19 20:13:44,650 - INFO - utility.store - Storing sermon data
+2025-07-19 20:13:45,002 - INFO - utility.store - Sermon stored successfully
+2025-07-19 20:13:45,002 - INFO - __main__ - Sermon processing completed successfully
+2025-07-19 20:13:45,005 - INFO - utility.cleanup - Cleaned up file: ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:48:19,653 - INFO - __main__ - Starting sermon processing pipeline
+2025-07-19 20:48:19,654 - INFO - __main__ - Scraping recent sermon data
+2025-07-19 20:48:28,020 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=UXVXtYdgg7g
+2025-07-19 20:48:38,235 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:48:38,236 - INFO - utility.transcribe - Starting transcription for ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:48:59,898 - INFO - utility.transcribe - Transcription completed successfully
+2025-07-19 20:48:59,949 - INFO - utility.outline - Sending transcript to Gemini for processing
+2025-07-19 20:49:22,570 - INFO - utility.outline - Successfully processed transcript
+2025-07-19 20:49:22,571 - INFO - utility.store - Connecting to Supabase
+2025-07-19 20:49:22,634 - INFO - utility.store - Storing sermon data
+2025-07-19 20:49:22,937 - INFO - utility.store - Sermon stored successfully
+2025-07-19 20:49:22,937 - INFO - __main__ - Sermon processing completed successfully
+2025-07-19 20:49:22,940 - INFO - utility.cleanup - Cleaned up file: ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:54:55,876 - INFO - __main__ - Starting sermon processing pipeline
+2025-07-19 20:54:55,877 - INFO - __main__ - Scraping recent sermon data
+2025-07-19 20:55:03,889 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=UXVXtYdgg7g&pp=0gcJCcwJAYcqIYzv
+2025-07-19 20:55:14,615 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:55:14,615 - INFO - utility.transcribe - Starting transcription for ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 20:55:39,804 - INFO - utility.transcribe - Transcription completed successfully
+2025-07-19 20:55:40,011 - INFO - utility.outline - Sending transcript to Gemini for processing
+2025-07-19 20:56:03,434 - INFO - utility.outline - Successfully processed transcript
+2025-07-19 20:56:03,435 - INFO - utility.store - Connecting to Supabase
+2025-07-19 20:56:03,728 - INFO - utility.store - Storing sermon data
+2025-07-19 20:56:04,187 - INFO - utility.store - Sermon stored successfully
+2025-07-19 20:56:04,187 - INFO - __main__ - Sermon processing completed successfully
+2025-07-19 20:56:04,192 - INFO - utility.cleanup - Cleaned up file: ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm

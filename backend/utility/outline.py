@@ -30,9 +30,10 @@ def outline(transcript: str) -> Dict[str, str]:
            into these six parts: opening anecdote, first prayer, bible 
            passage reading, sermon, final prayer, and conclusion. 
            For each segment, clean the text for readability as in a book: 
-           add paragraphs, remove unnecessary audio cues (like 'uh'), and 
-           preserve the original content as fully as possible, especially 
-           within the sermon.
+           add paragraphs, remove unnecessary audio cues (like 'uh'). 
+           Throughout each section feel free to add punctuation, paragraphs,
+           and edit it so the point is spoken concisely without omitting much
+           of the original thought.
         """
 
         logger.info("Sending transcript to Gemini for processing")
