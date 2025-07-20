@@ -9,18 +9,18 @@ from utility.logging import SermonProcessingError, setup_logger
 
 
 class Sermon(BaseModel):
-    anecdote: str
-    opening_prayer: str
-    bible_reading: str
-    sermon: str
-    closing_prayer: str
-    conclusion: str
+    anecdote: list[str]
+    opening_prayer: list[str]
+    bible_reading: list[str]
+    sermon: list[str]
+    closing_prayer: list[str]
+    conclusion: list[str]
 
 
 logger = setup_logger(__name__)
 
 
-def outline(transcript: str) -> Dict[str, str]:
+def outline(transcript: str) -> Dict[str, list[str]]:
     """Process transcript with Gemini AI"""
     try:
         client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
@@ -33,7 +33,9 @@ def outline(transcript: str) -> Dict[str, str]:
            add paragraphs, remove unnecessary audio cues (like 'uh'). 
            Throughout each section feel free to add punctuation, paragraphs,
            and edit it so the point is spoken concisely without omitting much
-           of the original thought.
+           of the original thought. For each section, return an array storing 
+           each paragraph as its own string. If there are three paragraphs in sermon,
+           return an array of three strings.
         """
 
         logger.info("Sending transcript to Gemini for processing")

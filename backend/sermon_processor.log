@@ -103,3 +103,18 @@
 2025-07-19 20:56:04,187 - INFO - utility.store - Sermon stored successfully
 2025-07-19 20:56:04,187 - INFO - __main__ - Sermon processing completed successfully
 2025-07-19 20:56:04,192 - INFO - utility.cleanup - Cleaned up file: ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 21:04:21,569 - INFO - __main__ - Starting sermon processing pipeline
+2025-07-19 21:04:21,570 - INFO - __main__ - Scraping recent sermon data
+2025-07-19 21:04:30,266 - INFO - utility.download - Attempting to download sermon from https://www.youtube.com/watch?v=UXVXtYdgg7g
+2025-07-19 21:04:39,184 - INFO - utility.download - Successfully downloaded sermon to ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 21:04:39,184 - INFO - utility.transcribe - Starting transcription for ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 21:05:03,379 - INFO - utility.transcribe - Transcription completed successfully
+2025-07-19 21:05:03,439 - INFO - utility.outline - Sending transcript to Gemini for processing
+2025-07-19 21:05:21,554 - INFO - utility.outline - Successfully processed transcript
+2025-07-19 21:05:21,555 - INFO - utility.store - Connecting to Supabase
+2025-07-19 21:05:21,619 - INFO - utility.store - Storing sermon data
+2025-07-19 21:05:21,930 - INFO - utility.store - Sermon stored successfully
+2025-07-19 21:05:21,930 - INFO - __main__ - Sermon processing completed successfully
+2025-07-19 21:05:21,933 - INFO - utility.cleanup - Cleaned up file: ./sermons/Fri 7.18.25 Ezekiel 1： 1-14 Unexpected Visions of God.webm
+2025-07-19 21:07:11,873 - INFO - __main__ - Starting sermon processing pipeline
+2025-07-19 21:07:11,874 - INFO - __main__ - Scraping recent sermon data
