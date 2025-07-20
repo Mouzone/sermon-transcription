@@ -5,3 +5,4 @@ utility/__pycache__/
 .venv/
 youtube_cookies.txt
 backend.egg-info/
+sermon_processor.log
